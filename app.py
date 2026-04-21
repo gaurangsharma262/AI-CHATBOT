@@ -17,6 +17,9 @@ Run:
 import os
 import uuid
 import logging
+import threading
+import time
+import requests
 from datetime import datetime, timezone, timedelta
 
 from flask import (
@@ -200,14 +203,35 @@ def admin():
     return render_template('admin.html')
 
 
-# ── App Initialisation ────────────────────────────────────────────────────────
+# ── App Initialisation & Heartbeat ───────────────────────────────────────────
+def keep_alive():
+    """Background thread that pings our own URL to prevent Render from sleeping."""
+    external_url = os.environ.get('RENDER_EXTERNAL_URL')
+    if not external_url:
+        logger.info("Heartbeat skipped: RENDER_EXTERNAL_URL not set in environment.")
+        return
+
+    logger.info(f"Starting heartbeat for {external_url}...")
+    while True:
+        try:
+            time.sleep(600)  # Wait 10 minutes between pings (Render sleeps at 15m)
+            response = requests.get(external_url)
+            logger.info(f"Heartbeat ping to {external_url}: {response.status_code}")
+        except Exception as e:
+            logger.error(f"Heartbeat ping failed: {e}")
+
 def init_app():
     with app.app_context():
         db.create_all()
         seed_faqs()
         seed_intent_stats(['gemini', 'fallback'])
+        # Also seed out new demo data
+        from database import seed_demo_data
         seed_demo_data()
         logger.info("Database initialised.")
+        
+    # Start the heartbeat thread automatically
+    threading.Thread(target=keep_alive, daemon=True).start()
 
 
 if __name__ == '__main__':
