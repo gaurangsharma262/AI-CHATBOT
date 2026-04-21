@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeuralChat — Your AI Friend</title>
+  <meta name="description" content="NeuralChat is your friendly AI assistant powered by Google Gemini — ask anything, get advice, have fun conversations, and more!"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-mesh">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Neural<span>Chat</span></div>
+    <div class="nav-status" id="aiStatus">
+      <span class="status-dot"></span>
+      <span class="status-text">Connecting...</span>
+    </div>
+    <a href="/admin" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      Dashboard
+    </a>
+  </nav>
+
+  <!-- MAIN CHAT INTERFACE -->
+  <main class="chat-app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h3>NeuralChat</h3>
+        <p>Your AI-powered friend</p>
+      </div>
+
+      <div class="sidebar-section">
+        <h4>Try asking me...</h4>
+        <div class="suggestion-list">
+          <button class="suggestion" onclick="sendQuick('Tell me a funny joke 😄')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            Tell me a funny joke
+          </button>
+          <button class="suggestion" onclick="sendQuick('Give me motivation for today')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Motivate me today
+          </button>
+          <button class="suggestion" onclick="sendQuick('Explain quantum computing in simple terms')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            Explain quantum computing
+          </button>
+          <button class="suggestion" onclick="sendQuick('Recommend a good movie to watch tonight')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg>
+            Recommend a movie
+          </button>
+          <button class="suggestion" onclick="sendQuick('Help me write a poem about rain')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+            Write a poem about rain
+          </button>
+          <button class="suggestion" onclick="sendQuick('What are some tips to be more productive?')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Productivity tips
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="powered-by">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Powered by Gemini AI
+        </div>
+      </div>
+    </aside>
+
+    <!-- Chat Main Area -->
+    <section class="chat-main">
+
+      <!-- Chat Header -->
+      <div class="chat-header-bar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleSidebar()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="chat-header-info">
+          <div class="chat-avatar-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <div>
+            <h4>NeuralChat</h4>
+            <p id="chatStatus">AI Friend · Ready to chat</p>
+          </div>
+        </div>
+        <button class="clear-btn" onclick="clearChat()" title="New conversation">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          New Chat
+        </button>
+      </div>
+
+      <!-- Messages -->
+      <div class="messages-area" id="messagesArea">
+
+        <!-- Welcome Message -->
+        <div class="welcome-hero" id="welcomeHero">
+          <div class="welcome-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h2>Hey there! I'm NeuralChat 👋</h2>
+          <p>Your AI-powered friend. Ask me anything — jokes, advice, explanations, recommendations, creative writing, or just chat!</p>
+
+          <div class="quick-chips" id="quickChips">
+            <button class="chip" onclick="sendQuick('Tell me a joke!')">😄 Tell a joke</button>
+            <button class="chip" onclick="sendQuick('Give me a fun fact')">🧠 Fun fact</button>
+            <button class="chip" onclick="sendQuick('Help me study better')">📚 Study tips</button>
+            <button class="chip" onclick="sendQuick('What should I watch tonight?')">🎬 Movie pick</button>
+            <button class="chip" onclick="sendQuick('Write me a short story')">✍️ Short story</button>
+            <button class="chip" onclick="sendQuick('Give me life advice')">💡 Life advice</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="typing-indicator" id="typingIndicator" style="display:none">
+        <div class="typing-avatar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+        </div>
+        <div class="typing-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="typing-label">NeuralChat is thinking...</span>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="input-bar">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Ask me anything..."
+          autocomplete="off"
+          autofocus
+        />
+        <button class="send-btn" id="sendBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>

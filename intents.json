@@ -1,0 +1,160 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hello", "hi", "hey", "good morning", "good afternoon", "good evening",
+        "hi there", "howdy", "what's up", "greetings", "hey bot", "hello there"
+      ],
+      "responses": [
+        "Hello! Welcome to NeuralChat — your college assistant. How can I help you today?",
+        "Hi there! I'm your college AI assistant. Ask me anything about admissions, courses, faculty, or campus life!",
+        "Hey! Great to see you. I can help with admissions, courses, fees, exams, and more. What do you need?"
+      ]
+    },
+    {
+      "tag": "admissions",
+      "patterns": [
+        "how do I apply", "admission process", "admission deadline", "apply for admission",
+        "how to get admission", "what are admission requirements", "application form",
+        "entrance exam for admission", "when does admission start", "eligibility for admission",
+        "is admission open", "cut off marks", "merit list", "admission dates"
+      ],
+      "responses": [
+        "Admissions are open from June to August each year. Visit our official portal to fill the application form. You need 60%+ in 10+2 for undergraduate programs.",
+        "The admission process involves: 1) Online application via our portal, 2) Entrance test (if applicable), 3) Document verification, 4) Fee payment. The deadline is typically 31st July.",
+        "To apply, go to our admissions portal, fill the form, upload your documents (marksheets, ID proof, photos), and pay the registration fee of ₹500. Merit lists are published in August."
+      ]
+    },
+    {
+      "tag": "courses",
+      "patterns": [
+        "what courses are available", "list of programs", "what can I study", "departments",
+        "available degrees", "btech courses", "mtech programs", "bca mca", "computer science courses",
+        "engineering branches", "science courses", "arts programs", "what subjects",
+        "course duration", "syllabus", "curriculum"
+      ],
+      "responses": [
+        "We offer B.Tech (CSE, ECE, ME, CE), M.Tech, BCA, MCA, BBA, MBA, and B.Sc programs. Each program is 4 years (B.Tech) or 2 years (M.Tech/MBA/MCA).",
+        "Our key programs include: B.Tech in Computer Science, Electronics, Mechanical & Civil Engineering; BCA/MCA for computer applications; BBA/MBA for management. Interested in a specific branch?",
+        "The Computer Science department offers subjects like Machine Learning, DBMS, Operating Systems, Computer Networks, Algorithms, Software Engineering, and Cloud Computing."
+      ]
+    },
+    {
+      "tag": "faculty",
+      "patterns": [
+        "who are the professors", "faculty list", "tell me about teachers", "faculty details",
+        "hod of cse", "department head", "professor contact", "teacher information",
+        "who teaches machine learning", "faculty members", "staff directory", "meet the faculty"
+      ],
+      "responses": [
+        "Our Computer Science department has 25+ qualified faculty including PhD holders from IITs and NITs. The HOD is Dr. Rajan Mehta (PhD, IIT Bombay).",
+        "Key faculty members: Dr. Priya Sharma (ML & AI), Prof. Arun Kumar (DBMS), Dr. Neha Patel (Networks), Prof. Sunita Rao (Algorithms). Visit our website for the full directory.",
+        "All our faculty members hold at least a Master's degree, with 60% being PhDs. They regularly publish research papers and guide student projects. Contact the admin office for specific faculty details."
+      ]
+    },
+    {
+      "tag": "exams",
+      "patterns": [
+        "when are exams", "exam schedule", "exam dates", "exam timetable", "when is the exam",
+        "semester exams", "mid term exam", "end term exam", "how many exams", "exam pattern",
+        "passing marks", "grace marks", "backlog exam", "supplementary exam", "examination form"
+      ],
+      "responses": [
+        "Semester exams are held in November–December (odd sem) and April–May (even sem). Mid-term exams are in September and February. Check the exam portal for exact dates.",
+        "The exam pattern: Mid-term (30 marks) + End-term (70 marks). Passing marks are 40% in each subject. Supplementary exams are held in June–July for students with backlogs.",
+        "Examination forms must be filled online at least 2 weeks before exams. The hall ticket/admit card is issued 1 week prior to the exam. Carry your college ID to the exam hall."
+      ]
+    },
+    {
+      "tag": "library",
+      "patterns": [
+        "library timings", "library hours", "library books", "borrow books", "return books",
+        "library facilities", "library card", "digital library", "e-resources", "library membership",
+        "how to get library card", "library fine", "book availability", "library catalog"
+      ],
+      "responses": [
+        "The central library is open Monday–Saturday, 8 AM to 8 PM. Students can borrow up to 3 books for 14 days. A fine of ₹2/day applies for late returns.",
+        "The library has 50,000+ books, 200+ journals, and access to e-resources like IEEE Xplore, Springer, and NPTEL. Get your library card from the library desk with your student ID.",
+        "Digital library resources are accessible 24/7 via the college portal using your student login. Physical library is on the 2nd floor of the Main Building. Wi-Fi is available inside."
+      ]
+    },
+    {
+      "tag": "hostel",
+      "patterns": [
+        "hostel facilities", "hostel fees", "is hostel available", "boys hostel", "girls hostel",
+        "hostel room", "hostel food", "hostel rules", "hostel warden", "hostel admission",
+        "accommodation", "on campus stay", "hostel address", "hostel contact"
+      ],
+      "responses": [
+        "We have separate hostels for boys and girls on campus. Hostel fee is ₹45,000/year including mess charges. Rooms are available in single, double, and triple occupancy.",
+        "Hostel facilities include: 24/7 security, Wi-Fi, gym, common room, laundry, canteen, and RO water. The hostel warden office is open 9 AM–6 PM. Apply via the admission portal.",
+        "Hostel rules: No entry after 10 PM without prior permission, no electrical appliances except laptops & phones, no outsiders without warden permission. Mess provides 3 meals daily."
+      ]
+    },
+    {
+      "tag": "fees",
+      "patterns": [
+        "how much is the fee", "fee structure", "tuition fee", "fee payment", "semester fee",
+        "annual fee", "scholarship", "fee waiver", "fee due date", "how to pay fees",
+        "online fee payment", "fee receipt", "registration fee", "development fee"
+      ],
+      "responses": [
+        "B.Tech fees: ₹1,20,000/year. BCA: ₹60,000/year. MBA: ₹1,50,000/year. Fees include tuition, development, and exam charges. Payment accepted online or via DD in favor of the college.",
+        "Scholarships available: Government scholarship for SC/ST/OBC, Merit scholarship (top 5% of class), Sports scholarship. Apply via the scholarship portal before October 31st.",
+        "Fee payment deadline is the 15th of the month at the start of each semester. Late fees attract a ₹50/day penalty. Pay online via the student portal using UPI, Net Banking, or Credit Card."
+      ]
+    },
+    {
+      "tag": "timetable",
+      "patterns": [
+        "class timetable", "lecture schedule", "when is my class", "class timings", "what time does class start",
+        "period schedule", "lab schedule", "which class today", "daily schedule", "weekly timetable",
+        "morning classes", "practical timing", "class room", "venue"
+      ],
+      "responses": [
+        "Classes run Monday–Saturday, 9 AM to 5 PM. Theory classes are 1 hour each; lab sessions are 2–3 hours. Download the semester timetable from the academic portal.",
+        "Typical daily schedule: 9–10 AM (Period 1), 10–11 AM (Period 2), 11–12 PM (Period 3), 12–1 PM (Lunch Break), 1–2 PM (Period 4), 2–3 PM (Period 5), 3–5 PM (Lab/Tutorial). Check your section's specific timetable on the portal.",
+        "The timetable is published on the first day of each semester. Find it on the student portal under 'Academics → Timetable'. Changes are notified via the college app and notice boards."
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "contact information", "college phone number", "email address", "college address",
+        "how to contact", "admin office", "registrar", "helpdesk number", "support",
+        "where is the office", "who to contact", "principal office", "enquiry number"
+      ],
+      "responses": [
+        "Main Office: +91-98765-43210 | Email: info@neuralcollege.edu.in | Address: Neural College Campus, Tech Park Road, Pune – 411001. Office hours: Mon–Sat, 9 AM – 5 PM.",
+        "Helpdesk: helpdesk@neuralcollege.edu.in | Admissions: admissions@neuralcollege.edu.in | Principal's Office: principal@neuralcollege.edu.in | Emergency: +91-98765-11111 (24/7).",
+        "You can visit us at Neural College, Tech Park Road, Pune. The admin block is opposite the main gate. For online queries, use the contact form on our official website."
+      ]
+    },
+    {
+      "tag": "events",
+      "patterns": [
+        "upcoming events", "college fest", "cultural events", "technical fest", "sports events",
+        "seminar schedule", "workshop", "guest lecture", "college activities", "event calendar",
+        "annual day", "hackathon", "coding contest", "national event"
+      ],
+      "responses": [
+        "Upcoming events: TechNova (Technical Fest – March 15–17), Euphoria (Cultural Fest – February 10–12), National Hackathon (April 5), Annual Sports Meet (January 20). Register on the events portal.",
+        "We host 50+ events annually including hackathons, workshops, guest lectures by industry experts, coding contests, and cultural performances. Check the events calendar on the college website.",
+        "The next major event is TechNova, our annual technical fest. Registration is open now. Participate in coding, robotics, AI model challenge, and paper presentation events. Prizes worth ₹5 Lakhs!"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye", "goodbye", "see you", "take care", "thanks bye", "exit", "quit",
+        "that's all", "nothing else", "ok thanks", "thank you", "thanks"
+      ],
+      "responses": [
+        "Goodbye! Have a great day. Feel free to come back anytime you need help! 👋",
+        "Thanks for chatting with NeuralChat! Best of luck with your studies. 🎓",
+        "See you around! If you have more questions, I'm always here to help. Bye! 😊"
+      ]
+    }
+  ]
+}
