@@ -193,6 +193,11 @@ def get_faqs():
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE ROUTES
 # ═══════════════════════════════════════════════════════════════════════════════
+@app.route('/ping')
+def ping():
+    return jsonify({'status': 'ok', 'message': 'NeuralChat server is alive'}), 200
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -205,36 +210,36 @@ def admin():
 
 # ── App Initialisation & Heartbeat ───────────────────────────────────────────
 def keep_alive():
-    """Background thread that pings our own URL to prevent Render from sleeping."""
-    external_url = os.environ.get('RENDER_EXTERNAL_URL')
-    if not external_url:
-        logger.info("Heartbeat skipped: RENDER_EXTERNAL_URL not set in environment.")
-        return
-
-    logger.info(f"Starting heartbeat for {external_url}...")
+    """Ping /ping every 14 min to prevent Render free-tier from sleeping."""
+    RENDER_URL = os.environ.get('RENDER_EXTERNAL_URL', 'https://ai-chatbot-06fq.onrender.com')
+    logger.info(f"Heartbeat starting — will ping {RENDER_URL}/ping every 14 min")
+    time.sleep(60)  # Wait for server to fully boot
     while True:
         try:
-            time.sleep(600)  # Wait 10 minutes between pings (Render sleeps at 15m)
-            response = requests.get(external_url)
-            logger.info(f"Heartbeat ping to {external_url}: {response.status_code}")
+            r = requests.get(f"{RENDER_URL}/ping", timeout=10)
+            logger.info(f"[Heartbeat] ping → {r.status_code}")
         except Exception as e:
-            logger.error(f"Heartbeat ping failed: {e}")
+            logger.error(f"[Heartbeat] ping failed: {e}")
+        time.sleep(14 * 60)  # 14 minutes
+
 
 def init_app():
     with app.app_context():
         db.create_all()
         seed_faqs()
         seed_intent_stats(['gemini', 'fallback'])
-        # Also seed out new demo data
         from database import seed_demo_data
         seed_demo_data()
         logger.info("Database initialised.")
-        
-    # Start the heartbeat thread automatically
+
+    # Start keepalive thread (daemon so it dies with the process)
     threading.Thread(target=keep_alive, daemon=True).start()
 
 
+# ── Initialise on import (works for both gunicorn and direct run) ─────────────
+init_app()
+
+
 if __name__ == '__main__':
-    init_app()
     logger.info("Starting NeuralChat on http://localhost:5000")
     app.run(debug=True, port=5000, use_reloader=False)
